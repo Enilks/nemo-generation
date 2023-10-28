@@ -2,13 +2,14 @@ from dotenv import load_dotenv
 from langchain.chat_models import ChatOpenAI
 from nemoguardrails import LLMRails, RailsConfig
 from nemoguardrails.actions import action
+import time
 
 
 # load the .env file
 load_dotenv()
 
 class Bot:
-    def __init__(self, config_path: str = "config/base"):
+    def __init__(self, config_path: str = "nemo/config/base"):
         '''
         The constructor method to create the Bot class, 
         and instantiate the LLM and associated guardrails
@@ -18,7 +19,8 @@ class Bot:
         '''
 
         self.rails = LLMRails(RailsConfig.from_path(config_path), verbose=True)
-        self.llm = ChatOpenAI(model_name="gpt-3.5-turbo", temperature=0.1)
+        self.llm = ChatOpenAI(model_name="text-davinci-003", temperature = 0.1)
+        self.start_time = time.time()
 
     @action()
     async def chat(self, history: []):

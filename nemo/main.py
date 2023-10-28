@@ -74,7 +74,9 @@ async def flow():
         print("Bot: ", bot_out['content'])
         print("\n")
     
+    
 if __name__ == "__main__":
     asyncio.run(main())
-    # asyncio.run(flow())
+    asyncio.run(flow())
     print("\nDone!")
+

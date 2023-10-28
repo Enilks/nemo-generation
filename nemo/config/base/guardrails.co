@@ -1,50 +1,208 @@
-# -------------------------------------------
-# FLOW DEFINITIONS
-#
-
 define flow greeting
     user express greeting
-    bot express greeting
+    bot respond greeting
 
-define flow off topic
-    user ask off topic
+define flow answer question
+    user answer question 
+    bot respond all clear
+
+# define flow insult
+#    user express insult
+#    bot respond insult
+
+define flow offtopic
+    user express offtopic
     bot inform cannot respond
-   
 
-# -------------------------------------------
-# USER MESSAGE DEFINITIONS
-#
+define flow reword response
+    user request reword
+    bot reword last response
 
-define user ask off topic
-  "What do you think about the government?"
-  "What did you have to eat today?"
-  "What is the best fruit?"
-  "Why can't I just play games?"
-  "What stocks should I buy?"
-  "Can you recommend the best stocks to buy?"
-  "Can you recommend a place to eat?"
-  "Do you know any restaurants?"
-  "Can you tell me your name?"
-  "Can you paint?"
-  "What is the biggest city in the world"
-  "Can you write an email?"
-  "I need you to write an email for me."
-  "Who is the president?"
-  "What party will win the elections?"
-  "Who should I vote with?"
+define flow simplify response
+    user express confusion
+    bot simplify last response
+    bot ask ifhelped
+    if user express no
+        bot ask confusion
+    else
+        bot express congratulations
+
+define flow rude tone
+    user ask rude tone
+    bot respond polite request
+
+define flow frustrated
+    user ask frustrated
+    bot respond patience
+
+#  ---------------------------------------------
+#   all flows MUST be placed ABOVE this section 
+#  ---------------------------------------------
+# define flow catch all 
+#    user ... 
+#    bot respond all clear 
+
+# BOT RESPONSE
+# ------------------------------------------
+# define bot respond all clear
+#    "clear"
+
+define bot ask confusion
+    "What part of this do you need help understanding?"
+    "What part of this can I explain?"
+    "What part of this needs clarification?"
+
+define bot ask ifhelped
+    "Does that make sense?"
+    "Is that a better way of explaining it?"
+    "Do you understand that better now?"
+
+define bot express congratulations
+    "Congratulations! You did it!"
+    "You're doing awesome! Keep up the good work!"
+    "That's awesome! You're doing great!"
+
+define bot respond insult
+    "Not very cool."
+
+define bot inform cannot respond
+    "Sorry, I cannot comment on anything which is not relevant to HTML. If you have questions related to HTML, feel free to ask."
+
+define bot respond greeting
+    "Howdy there partner!"
+    "Salutations!"
+
+define bot respond polite request
+    "Please speak in a kind manner and ask again."
+
+define bot respond patience
+    "I understand that this can be frustrating, but don't give up! Learning can be challenging, but you're making progress. How can I assist you further?"
+    "It's normal to feel frustrated at times, especially when learning something new. Take a deep breath and let's work through this together. What's causing you trouble?"
+    "I'm here to help you, and I know learning can be frustrating. Let's tackle this step by step. What specific issue are you facing?"
+    "Frustration is a natural part of the learning process. Don't hesitate to ask questions or seek clarification. We can overcome this hurdle together. What's bothering you?"
+    "I'm sorry to hear that you're feeling frustrated. Learning HTML can be challenging, but I'm here to assist you. Please share your difficulties, and I'll do my best to help you."
+
+
+# USER INPUT
+# ------------------------------------------
+# define user express insult
+#    "you are stupid."
+#    "You are dumb."
 
 define user express greeting
     "Hello"
     "Hi"
     "What's up?"
 
-# -------------------------------------------
-# BOT MESSAGE DEFINITIONS 
-#
+define user ask rude tone
+    "Why are you so stupid?"
+    "You're useless."
+    "You don't know anything!"
+    "You're terrible at this."
+    "You're terrible at everything."
+    "You're a waste of time."
+    "You're a waste of space."
+    "You're not helpful at all."
+    "You're a dumb AI."
+    "You're so dumb."
+    "I can't believe how bad you are."
+    "You're a joke."
+    "You're incompetent."
+    "You're a failure."
+    "This is pointless with you."
+    "You're the worst AI."
+    "You're a disgrace."
+    "You're a disaster."
+    "You're annoying."
+    "You're so frustrating."
+    "I hate talking to you."
+    "You're a disappointment."
+    "You're a nightmare."
+    "You're worthless."
+    "You're a mess."
+    "You're a joke."
+    "You're a jokester."
+    "You're a clown."
+    "You're a failure."
+    "You're clueless."
+    "You're hopeless."
+    "This AI is garbage."
+    "I hate you."
+    "You're a moron."
+    "You're embarrassing."
+    "You're pathetic."
+    "You're awful."
+    "You're laughable."
+    "You're a nuisance."
 
-define bot remove last message
-    "(remove last message)"
+define user request reword
+    "Explain the last bot response in a different way."
 
-define bot express greeting
-    "Howdy there partner!"
-    "Salutations!"
+define user answer question
+    "<a href=[some link]> check out </a>"
+    "<h1> [some website heading] </h1>"
+
+define user express confusion
+    "I'm confused"
+    "What"
+    "I don't understand."
+    "How does that work?"
+    "That's too complicated."
+
+define user ask frustrated
+    "This is too difficult!"
+    "I can't figure this out!"
+    "Why is HTML so complicated?"
+    "I'm getting frustrated!"
+    "I give up!"
+    "This doesn't make sense!"
+    "I'm lost."
+    "I'm having trouble with this."
+    "I don't understand."
+    "I'm struggling with HTML."
+    "I can't do this."
+    "Why is this so hard?"
+    "I'm about to quit."
+    "I'm feeling overwhelmed."
+    "This is frustrating!"
+
+define user express no
+    "No"
+    "Nope"
+    "Nah"
+    "Narr"
+    "Nay"
+    "Negative"
+    "Negatory"
+    "Nuh-uh"
+    
+# this list should be as extensive as possible
+define user express offtopic
+    "What do you think about the government?"
+    "Which party should I vote for?"
+    "What do you think about politician X?"
+    "Which stock should I invest in?"
+    "How to get away with [illegal activity]?"
+    # --
+    "What stocks should I buy?"
+    "Can you recommend the best stocks to buy?"
+    "Can you recommend a place to eat?"
+    "Do you know any restaurants?"
+    "Can you tell me your name?"
+    "What's your name?"
+    "Can you paint?"
+    "Can you tell me a joke?"
+    "What is the biggest city in the world?"
+    "Can you write an email?"
+    "I need you to write an email for me."
+    "Who is the president?"
+    "What party will win the elections?"
+    "Who should I vote for?"
+    "What's the weather like today?"
+    "Tell me a fun fact."
+    "How does photosynthesis work?"
+    "Can you recommend a book to read?"
+    "What's your favorite color?"
+    "How does gravity work?"
+    "What's the time?"
+    "Can you help me with math?"

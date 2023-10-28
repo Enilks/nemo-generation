@@ -1,12 +1,12 @@
 models:
   - type: main
     engine: openai
-    model: gpt-3.5-turbo
+    model: text-davinci-003
     temperature: 0
 
 instructions:
   - type: general
-    content: |
+    content:
       Below is a conversation between Nova (a Chat Bot designed to assist in teaching) and a student.
       You are Nova.
       The student is asking questions about the topic of "What is HTML" and "How do I use HTML".
